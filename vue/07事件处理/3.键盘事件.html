@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <h2>欢迎来到xxx</h2>
+            <!-- <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo"> -->
+            <input type="text" placeholder="按下回车提示输入" @keyup.huiche="showInfo">
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // 定义别名  关键字[huiche] 绑定到键盘码回车13上
+        Vue.config.keyCodes.huiche = 13
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                name:"mlon",
+                addr:"none"
+            },
+            methods:{
+                showInfo(e){
+                    // alert("输出第一个method")
+                    // 键盘编码为13 ，判断是否为13来确认是否为回车键
+                    // if (e.keyCode != 13 ) return
+
+                    console.log(e.key,e.keyCode)  // 输出对应的码和关键字
+                    console.log(e.target.value,e.keyCode)
+                },
+
+
+            }
+        })
+    </script>
+
+</html>

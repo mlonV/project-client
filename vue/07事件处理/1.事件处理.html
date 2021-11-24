@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <!--             
+                1.使用v-on:xxx 或者@xxx 绑定事件，xxx为事件名
+                2.事件的回调需要配置在methods对象中，最终在vm上
+                3.methods中配置的函数，不要使用箭头函数！否则this就不是vm了
+                4.methods中配置的函数，都是被Vue管理的函数，this的指向vm或组建的实例对象
+                5.@click="demo" 和@click
+            */ -->
+            <h2>learning Vue</h2>
+            <button v-on:click="showInfo1">点我试试2</button>
+            <button @click="showInfo2($event,666)">点我试试2</button>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                name:"mlon",
+                addr:"none"
+            },
+            methods:{
+                showInfo1(){
+                    alert("输出第一个method")
+                },
+                showInfo2(event,number){
+                    alert("输出第二个method")
+                    console.log(event,number)
+                }
+
+            }
+        })
+    </script>
+
+</html>
