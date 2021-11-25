@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 隐藏文字的多种用法，里面可以写表达式   调试模式看代码可以看到-->
+            <!-- <h2 v-show="true">隐藏文字</h2> -->
+            <!-- <h2 v-show="1===1">隐藏文字</h2> -->
+            
+            <!-- v-if 消失的很彻底，连调试模式看代码都看不到 -->
+            <!-- <h2 v-if="false">隐藏文字</h2> -->
+            
+            <!-- v-if 可以配合v-else-if，v-else使用 
+                v-else 没有条件直接显示了
+                -->
+            <h2>输出n的值，{{ n }}</h2>
+            <button @click="n++">点我+1</button>
+            <h2 v-if="n===2"> gin </h2>
+            <h2 v-if="n===2"> flask </h2>
+            <h2 v-if="n===2"> duoble </h2>
+
+            <h2 v-if="n===1"> gin </h2>
+            <h2 v-else-if="n===2"> flask </h2>
+            <h2 v-else-if="n===3"> duoble </h2>
+            
+            <!-- template 这样不会破坏结构也能很简洁的代码，不用多次判断  -->
+            <template v-if="n===3">
+                <h2>gin3</h2>
+                <h2>iris3</h2>
+                <h2>flask3</h2>
+            </template>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                name:"mlon",
+                addr:"none",
+                n:1
+            },
+            methods:{
+                sum(){
+                    this.n = this
+                },
+            }
+        })
+    </script>
+
+</html>
