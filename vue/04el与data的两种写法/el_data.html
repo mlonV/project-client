@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>el_data两种写法</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+
+        <div id="root">
+            <h1>你好,{{name}}</h1>
+        </div>
+        
+    </body>
+
+    <script  type="text/javascript">
+    const v = new Vue({
+        // el:"#root",    // 第一种写法，直接绑定容器
+        data:{
+            name:"mlon"
+        }
+    })
+    console.log(v)
+    v.$mount('#root')  //先创建好实例，之后在mount挂载
+    </script>
+
+</html>
