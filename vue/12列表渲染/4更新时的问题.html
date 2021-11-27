@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>更新马冬梅</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <h2>人员列表</h2>
+            <input type="text" placeholder="请输入名字" v-model="keyWord" ><br>
+            <button @click="updateMei"> 更新马冬梅 </button><br>
+            <!-- <button @click="sorttype = 2">正序排序</button>
+            <button @click="sorttype = 1">倒叙排序</button>
+            <button @click="sorttype = 0">正常顺序</button> -->
+            <ul>
+                <li v-for="list in persons" :key="list.id">{{list.name}} - {{list.age}} - {{list.sex}}</li>
+            </ul>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                keyWord:"",
+                sorttype:0,
+                persons:[
+                    {id:001,name:"马冬梅",age:18,sex:"女"},
+                    {id:002,name:"周冬雨",age:11,sex:"女"},
+                    {id:003,name:"周杰伦",age:13,sex:"男"},
+                    {id:004,name:"温兆伦",age:12,sex:"男"},
+                ],  
+            },
+            methods: {
+                updateMei() {
+                    // 正常修改数组属性
+                    // this.persons[0].name = "mlon"
+                    // this.persons[0].age = 122
+                    // this.persons[0].sex = "none"
+
+                    // 有问题的修改数组属性
+                    this.persons[0] = {id:001,name:"马大帅",age:182,sex:"女"}
+                }
+            },
+        })
+    </script>
+</html>
