@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+    <!--       
+        已经学过的内置指令
+            1.v-bind : 单项绑定解析表达式，可简写为 :xxx
+            2.v-model : 双向数据绑定
+            3.v-for : 遍历数组/对象/字符串
+            4.v-on : 绑定监听时间，可简写为@
+            5.v-if : 条件渲染（动态控制节点是否存在）
+             v-else
+            6.v-show : 条件渲染 （动态控制节点是否展示）
+            7.v-text : 文本，没有插值语法好用和灵活
+           -->
+
+        <div id="root">
+            <h3>{{name}}</h3>
+
+            <!-- v-text  -->
+            <h3 v-text="addr"></h3>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                name:"mlon",
+                addr:"none1"
+            },
+            methods:{
+                showInfo(){
+                    alert("输出第一个method")
+                },
+            }
+        })
+    </script>
+
+</html>
