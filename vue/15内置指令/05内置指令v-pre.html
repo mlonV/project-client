@@ -5,32 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <!-- <style>
-            [v-clock]{
-                display: none;
-            }
-        </style> -->
+        <script type="text/javascript" src="../js/vue.js"></script>
     </head>
     <body>
-    <!--       
-        v-clock是一个特殊的指令（没有值）
-            1.本质是一个特殊的属性，Vue实例创建完毕并接管容器后，会删掉v-clock属性。
-            2.配合CSS和v-clock可以解决网速过慢时页面展示出{{name}}的问题
-                #上面样式可调式
-    -->
+        <!-- 
+            1.v-pre指令跳过其所在节点的编译过程
+            2.可利用它跳过：没有使用指令语法，没有使用插值语法的节点，会加快编译
+        -->
 
         <div id="root">
-            <h3 v-clock>{{name}}</h3>
-
+            <h3 v-pre>n的初始值为:{{ n }}</h3>
+            <h3 v-clock>n当前的值为:{{ n }}</h3>
+            <button @click="n++">点我n+1</button>
         </div>
-    <script type="text/javascript" src="http://127.0.0.1:8080/getjs/5/js"></script>
     </body>
     <script type="text/javascript">
         Vue.config.productionTip = false
         const vm = new Vue({
             el:"#root",
             data:{
-                name:'mlon',
+                n:1,
             },
             methods:{
                 showInfo(){
