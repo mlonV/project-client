@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <school></school>
+            <hr>
+            <suoxe></suoxe>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // school名称使用双驼峰时会出现问题，使用脚手架才可以 例如:MySchool
+        const school = Vue.extend({
+            name:"echo",  //在开发者页面上标签名字为Echo， 不会使用下面的school（默认不指定则为下面的名字）
+            template:`
+            <div id="root">
+                <h2>我名字：{{name}}</h2>
+                <h2>我地址: {{addr}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    name:"mlon",
+                    addr:"none"
+                }
+            }
+        })
+        // 简写-省略extend ，可直接传入一个对象，省去extend，但是Vue会判断若没有extend则会执行一次。
+        const suoxe = {
+            template:`
+            <div id="root">
+                <h2>简写的: {{name}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    name:"Vue"
+                }
+            }
+        }
+
+        new Vue({
+            el:"#root",
+            data:{
+                // name:"mlon",
+                // addr:"none"
+            },
+            components:{
+                school,
+                suoxe
+            }
+
+        })
+    </script>
+
+</html>

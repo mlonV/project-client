@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 03使用组件 -->
+            <school></school>
+            <hr>
+            <xuesheng></xuesheng>
+            <hr>
+            <ss></ss>
+        </div>
+
+        <div id="root02">
+            <!-- 即使没有在vm中注册组件也可以调用到 -->
+            <ss></ss>
+        </div>
+        
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // 全局组件创建
+        const ss = Vue.extend({   //定义组件只能用函数式
+            template:`
+            <div>
+                <h2>你好啊智障：{{country}}</h2>   
+            </div>
+            `,
+            data(){
+                return {
+                    country:"Amarica",
+
+                }
+            }
+        })
+        // 全局注册组件
+        Vue.component('ss',ss)
+
+        // 01创建school组件
+        const school = Vue.extend({   //定义组件只能用函数式
+            template:`
+            <div>
+                <h2>学校名字：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddr}}</h2>   
+            </div>
+            `,
+            data(){
+                return {
+                    schoolName:"high school",
+                    schoolAddr:"中州大道"
+                }
+            }
+        }) 
+        // 01创建student组件
+        const student = Vue.extend({   //定义组件只能用函数式
+            template:`
+            <div>
+                <h2>学生名字：{{studentName}}</h2>
+                <h2>学生地址：{{studentAddr}}</h2>   
+            </div>
+            `,
+            data(){
+                return {
+                    studentName:"mlon",
+                    studentAddr:"家里蹲"
+                }
+            }
+        }) 
+        
+
+        new Vue({
+            el:"#root",
+            data:{
+                echo:"echo"
+            },
+            // 02注册组件
+            components:{
+                school:school,
+                xuesheng:student
+            }
+        })
+
+        //加入有很多容器则需要注册多次组件，所以可使用全局组件
+        new Vue({
+            el:"#root02",
+            components:{
+                school:school,
+            }
+        })
+
+    </script>
+
+</html>
