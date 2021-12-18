@@ -3,8 +3,8 @@
         <div class="todo-container">
             <div class="todo-wrap">
                 <MyHeader :addTodo="addTodo" />
-                <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-                <MyFooter :todos="todos" :setDone="setDone"  :DelAllDone="DelAllDone" />
+                <MyList :todos="todos" :checkTodo="checkTodo" />
+                <MyFooter/>
             </div>
         </div> 
     </div>
@@ -29,33 +29,15 @@
             }
         },
         methods:{
-            // 添加项
+            // 添加 项
             addTodo(obj){
                 this.todos.unshift(obj)
                 console.log(obj)
             },
-            // 勾选或者取消
+            // 勾选取反
             checkTodo(id){
                 this.todos.forEach((todo)=>{
                     if (todo.id === id ) todo.done = !todo.done
-                })
-            },
-            // 删除项
-            deleteTodo(id){
-                this.todos = this.todos.filter((todo) => {
-                    if (todo.id !==id) return todo
-                })
-            },
-            // 设置全选或者全不选
-            setDone(value){
-                this.todos.forEach((todo)=>{
-                    todo.done = value
-                })
-            },
-            // 清除
-            DelAllDone(){
-                this.todos = this.todos.filter((todo)=>{
-                     return !todo.done
                 })
             }
         }
