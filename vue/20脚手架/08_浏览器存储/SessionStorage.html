@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>sessionStorage</title>
+        <!-- <script type="text/javascript" src="../js/vue.js"></script> -->
+    </head>
+    <body>
+        <h2>sessionStorage</h2>
+        <button onclick="addItem()">点我添加一个sessionStorage</button>
+        <button onclick="getItem()">点我获取一个sessionStorage</button>
+        <button onclick="delItem()">点我删除一个sessionStorage</button>
+        <button onclick="delAllItem()">点我清空sessionStorage</button>
+    </body>
+    <script type="text/javascript">
+        let p = {'user':123,"name":"mlon"}
+
+        function addItem(){
+        window.sessionStorage.setItem('msg','value11111')
+        window.sessionStorage.setItem('person',JSON.stringify(p))
+        }
+
+        function getItem(){
+        msg = window.sessionStorage.getItem('msg')
+        jsonPerson = window.sessionStorage.getItem('person')
+
+        console.log(msg,JSON.parse(jsonPerson))
+        }
+
+        function delItem(){
+        window.sessionStorage.removeItem('msg')
+        // window.sessionStorage.setItem('person',JSON.stringify(p))
+        }
+        function delAllItem(){
+        window.sessionStorage.clear()
+        // window.sessionStorage.setItem('person',JSON.stringify(p))
+        }
+    </script>
+
+</html>

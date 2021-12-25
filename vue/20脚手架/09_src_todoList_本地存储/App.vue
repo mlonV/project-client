@@ -3,8 +3,8 @@
         <div class="todo-container">
             <div class="todo-wrap">
                 <MyHeader :addTodo="addTodo" />
-                <MyList :todos="todos" :checkTodo="checkTodo" />
-                <MyFooter/>
+                <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+                <MyFooter :todos="todos" :setDone="setDone"  :DelAllDone="DelAllDone" />
             </div>
         </div> 
     </div>
@@ -20,25 +20,46 @@
         components:{MyFooter,MyList,MyHeader},
         data(){
             return {
-                todos:[
-                    {id:"001",title:"eat",done:true},
-                    {id:"002",title:"play",done:true},
-                    {id:"003",title:"drink",done:false},
-                    {id:"004",title:"driver",done:true}
-                ]
+                todos:JSON.parse(localStorage.getItem('todos')) || []
             }
         },
         methods:{
-            // 添加 项
+            // 添加项
             addTodo(obj){
                 this.todos.unshift(obj)
                 console.log(obj)
             },
-            // 勾选取反
+            // 勾选或者取消
             checkTodo(id){
                 this.todos.forEach((todo)=>{
                     if (todo.id === id ) todo.done = !todo.done
                 })
+            },
+            // 删除项
+            deleteTodo(id){
+                this.todos = this.todos.filter((todo) => {
+                    if (todo.id !==id) return todo
+                })
+            },
+            // 设置全选或者全不选
+            setDone(value){
+                this.todos.forEach((todo)=>{
+                    todo.done = value
+                })
+            },
+            // 清除
+            DelAllDone(){
+                this.todos = this.todos.filter((todo)=>{
+                     return !todo.done
+                })
+            }
+        },
+        watch:{
+            todos:{
+                deep:true,
+                handler(value){
+                    localStorage.setItem('todos',JSON.stringify(value))
+                }
             }
         }
 }
