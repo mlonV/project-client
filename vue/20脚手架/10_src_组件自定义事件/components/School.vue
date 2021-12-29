@@ -1,5 +1,6 @@
 <template>
     <div class="school">
+        <h2>school</h2>
         <h2>i am ：{{name}}</h2>
         <h2>my age ：{{address}}</h2>
         <button @click="sendSchoolName"> 点我获取 </button>

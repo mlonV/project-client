@@ -2,9 +2,9 @@
     <div id="root">
         <div class="todo-container">
             <div class="todo-wrap">
-                <MyHeader :addTodo="addTodo" />
-                <MyList :todos="todos"  />
-                <MyFooter :todos="todos" :setDone="setDone"  :DelAllDone="DelAllDone" />
+                <MyHeader @addTodo="addTodo" />
+                <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+                <MyFooter :todos="todos" @setDone="setDone"  @DelAllDone="DelAllDone" />
             </div>
         </div> 
     </div>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-    import pubsub from 'pubsub-js'
     import MyHeader from "./components/MyHeader.vue"
     import MyList from "./components/MyList.vue"
     import MyFooter from "./components/MyFooter.vue"
@@ -21,7 +20,12 @@
         components:{MyFooter,MyList,MyHeader},
         data(){
             return {
-                todos:JSON.parse(localStorage.getItem('todos')) || []
+                todos:[
+                    {id:"001",title:"eat",done:true},
+                    {id:"002",title:"play",done:true},
+                    {id:"003",title:"drink",done:false},
+                    {id:"004",title:"driver",done:true}
+                ]
             }
         },
         methods:{
@@ -37,7 +41,7 @@
                 })
             },
             // 删除项
-            deleteTodo(_,id){
+            deleteTodo(id){
                 this.todos = this.todos.filter((todo) => {
                     if (todo.id !==id) return todo
                 })
@@ -53,33 +57,7 @@
                 this.todos = this.todos.filter((todo)=>{
                      return !todo.done
                 })
-            },
-            // 更新数据一个todo
-            updateTodo(id,e){
-                this.todos.forEach((todo)=>{
-                    if (todo.id === id ) todo.title = e.target.value
-                })
-            },
-        },
-        watch:{
-            todos:{
-                deep:true,
-                handler(value){
-                    localStorage.setItem('todos',JSON.stringify(value))
-                }
             }
-        },
-        mounted(){
-            this.$bus.$on('checkTodo',this.checkTodo)
-            // this.$bus.$on('deleteTodo',this.deleteTodo)
-            this.subID = pubsub.subscribe('GetID',this.deleteTodo)
-            this.$bus.$on('updateTodo',this.updateTodo)
-        },
-        beforeDestroy(){
-            this.$bus.$off('checkTodo')
-            // this.$bus.$off('deleteTodo')
-            pubsub.unsubscribe(this.subID)
-            this.$bus.$off('updateTodo')
         }
 }
 </script>
@@ -107,12 +85,6 @@
         color:#fff;
         background-color: #da4f49;
         border: 1px solid #bd362f;
-    }
-    .btn-edit {
-        color:#fff;
-        background-color:skyblue;
-        border: 1px solid rgb(89, 142, 163);
-        margin-right: 5px;
     }
 
     .btn-danger:hover {

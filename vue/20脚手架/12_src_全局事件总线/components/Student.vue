@@ -1,8 +1,9 @@
 <template>
-    <div class="student">
+    <div class="demo">
+        <h2>Student</h2>
         <h2>i am ：{{name}}</h2>
         <h2>my address ：{{address}}</h2>
-        <button @click="sendStudentName"> 点我获取 </button>
+        <button @click="sendMsgToSchool">点我给School发数据</button>
     </div>
 </template>
 
@@ -16,17 +17,16 @@
             }
         },
         methods:{
-            sendStudentName(){
-                this.$emit('getStudent',this.name)
+            sendMsgToSchool(){
+                this.$bus.$emit('sendMsgStudent',this.name)
             }
         }
+
     }
 </script>
 
 <style scoped>
-    .student{
+    .demo{
         background-color:hotpink;
-        padding: 5px;
-        margin-top: 30px;
     }
 </style>
