@@ -3,7 +3,10 @@ import Vue from "vue"
 // 引入App
 import App from "./App.vue"
 
+// 引入插件 vue-resource
+import vueResource from 'vue-resource'
 
+Vue.use(vueResource)
 // 关闭提示信息
 Vue.config.productionTip = false
 
