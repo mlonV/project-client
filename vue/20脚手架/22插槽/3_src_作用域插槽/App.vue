@@ -8,6 +8,7 @@
                         {{item}}
                     </li>
                 </ul>
+                
             </template>
         </Category>
 
@@ -18,6 +19,7 @@
                         {{item}}
                     </ol>
                 </ul>
+                <!-- {{sings}}   打印到页面是一个字典饱含着列表 -->
             </template>
         </Category>
 
