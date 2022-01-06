@@ -1,6 +1,6 @@
 <template>
     <div class="count">
-        <h1>当前求和为：{{$store.state.sum}}</h1>
+        <h1>当前求和为：{{sum}}</h1>
         <!-- getters调用方式 -->
         <!-- <h1>当前求和*10为：{{$store.getters.GetTenSum}}</h1> -->
         <h1>当前求和*10为：{{GetTenSum}}</h1>
@@ -31,12 +31,13 @@
             }
         },
         computed:{
-            ...mapState(['name','project','personList']),
-            ...mapGetters(['GetTenSum']),
+            ...mapState('countObj',['name','sum','project']),
+            ...mapState('personObj',['personList']),
+            ...mapGetters('countObj',['GetTenSum']),
         },
         methods:{
-            ...mapMutations({'increase':'MutationIncrease','decrease':'MutationDecrease'}),
-            ...mapActions({'increaseOdd':'ActionIncreaseOdd','increaseWait':'ActionIncreaseWait'}),
+            ...mapMutations('countObj',{'increase':'MutationIncrease','decrease':'MutationDecrease'}),
+            ...mapActions('countObj',{'increaseOdd':'ActionIncreaseOdd','increaseWait':'ActionIncreaseWait'}),
         }
     }
 </script>
