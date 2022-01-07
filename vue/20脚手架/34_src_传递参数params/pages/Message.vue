@@ -2,16 +2,17 @@
     <div>
         <ul>
             <li v-for="m in msgList" :key="m.id">
-                <!-- 给路由穿参数 query 第一种写法 -->
-                <!-- <router-link :to="`/home/message/detail?id=${m.id}&msg=${m.msg}`">{{m.title}}</router-link>&nbsp;&nbsp; -->
+                <!-- 给路由穿参数 params 第一种写法 需要在路由设置里面设置占位符  调用的时候使用params -->  
+                <router-link :to="`/home/message/detail/${m.id}/${m.msg}`">{{m.title}}</router-link>&nbsp;&nbsp;
 
-                <!-- 第二种写法 写成对象的形式-->
+                <!-- 第二种写法 写成对象的形式
                 <router-link :to="{
-                    path:'/home/message/detail',
-                    query:{id:m.id,msg:m.msg}
+                    name:'threeDetail',   
+                    // path:'/home/message/detail',  //不支持这样写了
+                    params:{id:m.id,msg:m.msg}
                 }">
                     {{m.title}}
-                </router-link>&nbsp;&nbsp;
+                </router-link>&nbsp;&nbsp; -->
             </li>
         </ul>
         <hr>

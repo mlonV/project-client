@@ -2,12 +2,13 @@
     <div>
         <ul>
             <li v-for="m in msgList" :key="m.id">
-                <!-- 给路由穿参数 query 第一种写法 -->
+                <!-- 给路由穿参数  第一种写法 -->
                 <!-- <router-link :to="`/home/message/detail?id=${m.id}&msg=${m.msg}`">{{m.title}}</router-link>&nbsp;&nbsp; -->
 
                 <!-- 第二种写法 写成对象的形式-->
                 <router-link :to="{
-                    path:'/home/message/detail',
+                    name:'threeDetail',   //使用简写形式
+                    // path:'/home/message/detail',
                     query:{id:m.id,msg:m.msg}
                 }">
                     {{m.title}}

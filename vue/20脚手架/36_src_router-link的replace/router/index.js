@@ -45,14 +45,12 @@ export default new VueRouter({
                             //         msg:$route.query.msg
                             //     }
                             // }
-                            props($route){ 
-                                // console.log($route)
+                            props({query}){ 
                                 return {
-                                    id:$route.params.id,
-                                    msg:$route.params.msg,
-                                    
-                                    // id:query.id,
-                                    // msg:query.msg
+                                    // id:$route.params.id,
+                                    // msg:$route.params.msg
+                                    id:query.id,
+                                    msg:query.msg
                                 }
                             }
                         },

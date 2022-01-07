@@ -51,9 +51,7 @@
                     params:{id:m.id,msg:m.msg}
                 })
             },
-        },
-        beforeDestroy(){
-                console.log('message即将被销毁')
-            },
+            
+        }
     }
 </script>
