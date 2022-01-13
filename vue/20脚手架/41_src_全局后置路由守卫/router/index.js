@@ -10,7 +10,7 @@ const router =  new VueRouter({
         {
             name:"about",
             path:"/about",
-            meta:{isAuth:true,title:"关于呀"},
+            meta:{title:"关于呀"},
             component:About
         },
         {
@@ -23,19 +23,7 @@ const router =  new VueRouter({
                     name:"news",
                     path:"news",
                     meta:{isAuth:true,title:"新闻呀"},
-                    component:News,
-                    // // 独享路由守卫，写法和全局路由守卫一毛一样。
-                    // beforeEnter: (to,_,next)=>{
-                    //     if (to.meta.isAuth) {
-                    //         if (localStorage.getItem('name') === 'mlon'){
-                    //             next()
-                    //         }else{
-                    //             alert('name 不为 mlon，不给访问')
-                    //         }
-                    //     }else{
-                    //         next()
-                    //     }
-                    // }
+                    component:News
                 },
                 {
                     name:"message",
@@ -85,20 +73,20 @@ const router =  new VueRouter({
 })
 
 
-// // 添加路由守卫， to跳转到哪个路由  from从哪个路由来  next()判断条件后放行函数
-// router.beforeEach((to,from,next)=>{
-//     // if (to.name === 'message'|| to.name === 'news') {
-//     if (to.meta.isAuth) {    // 设置了meta可以需要鉴定的 设置为true不需要的则不用设置 减少代码量
-//         // 设置了从localstorage获取数据，数据不对称则不给显示
-//         if (localStorage.getItem('name') === 'mlon'){
-//             next()
-//         }else{
-//             alert('name 不为 mlon，不给访问')
-//         }
-//     }else{
-//         next()
-//     }
-// })
+// 添加路由守卫， to跳转到哪个路由  from从哪个路由来  next()判断条件后放行函数
+router.beforeEach((to,from,next)=>{
+    // if (to.name === 'message'|| to.name === 'news') {
+    if (to.meta.isAuth) {    // 设置了meta可以需要鉴定的 设置为true不需要的则不用设置 减少代码量
+        // 设置了从localstorage获取数据，数据不对称则不给显示
+        if (localStorage.getItem('name') === 'mlon'){
+            next()
+        }else{
+            alert('name 不为 mlon，不给访问')
+        }
+    }else{
+        next()
+    }
+})
 
 
 // 后置路由守卫
@@ -107,4 +95,4 @@ router.afterEach((to,from)=>{
     document.title = to.meta.title  || '测试系统✅'
 })
 
-export default router  
+export default router

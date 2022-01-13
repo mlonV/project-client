@@ -10,7 +10,7 @@ const router =  new VueRouter({
         {
             name:"about",
             path:"/about",
-            meta:{isAuth:true,title:"关于呀"},
+            meta:{title:"关于呀"},
             component:About
         },
         {
@@ -24,18 +24,18 @@ const router =  new VueRouter({
                     path:"news",
                     meta:{isAuth:true,title:"新闻呀"},
                     component:News,
-                    // // 独享路由守卫，写法和全局路由守卫一毛一样。
-                    // beforeEnter: (to,_,next)=>{
-                    //     if (to.meta.isAuth) {
-                    //         if (localStorage.getItem('name') === 'mlon'){
-                    //             next()
-                    //         }else{
-                    //             alert('name 不为 mlon，不给访问')
-                    //         }
-                    //     }else{
-                    //         next()
-                    //     }
-                    // }
+                    // 独享路由守卫，写法和全局路由守卫一毛一样。
+                    beforeEnter: (to,_,next)=>{
+                        if (to.meta.isAuth) {
+                            if (localStorage.getItem('name') === 'mlon'){
+                                next()
+                            }else{
+                                alert('name 不为 mlon，不给访问')
+                            }
+                        }else{
+                            next()
+                        }
+                    }
                 },
                 {
                     name:"message",

@@ -5,7 +5,7 @@
 <script>
     export default {
         name:"About",
-        // 进入路由守卫
+        // 进入路由守卫  ，只有通过路由设置才生效，直接component引入的不生效
         beforeRouteEnter (to, from, next) {
             console.log("@@@@@")
             if (to.meta.isAuth) {
