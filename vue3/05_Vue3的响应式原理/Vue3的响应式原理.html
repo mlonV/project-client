@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3的响应式原理</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let person = {
+            name:"mlon",
+            age:18
+        }
+        // // Vue2 响应式
+        // // 且delete 属性的时候 不生效响应式需要Vue的$set
+        // let p = {}
+        // // 设置一个数据代理，来监测数据的改变
+        // Object.defineProperty(p,'name',{
+        //     configurable:true,
+        //     get(){
+        //         return person.name
+        //     },
+        //     set(value){
+        //         console.log('有人修改了这个')
+        //         person.name = value
+        //     }
+        // })
+
+        // Vue3 响应式,相比Vue不用遍历每个属性去单独设置settergetter了
+        const p = new window.Proxy(person,{
+            // 有人读取p则调用
+            get(target,propName){
+                // 能接收两个参数第一个为传入对象（这里是person），第二个是调用的属性名（即我在console控制台上输出p.name 则propName就是name）
+                // 且get函数必须需要return返回
+                console.log(target[propName])
+                return Reflect.get(target,propName)
+            },
+            // 有人修改或者新增则调用
+            set(target,propName,value){
+                console.log('该去更新页面了',`p.${propName}=${value}`)
+                // return target[propName]=value
+                return Reflect.set(target,propName,value)
+            },
+            // 有人删除则调用
+            deleteProperty(target,propName){
+                console.log('该去更新页面了',`delete p.${propName}`)
+                return Reflect.deleteProperty(target,propName)
+            }
+        })
+        // 在控制台中增删改查p对象都可以引起person的变化
+
+
+    </script>
+</body>
+</html>
